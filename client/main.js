@@ -16,14 +16,4 @@ Meteor.startup(() => {
     router,
     vuetify,
   });
-  if (Meteor.isCordova) {
-    window.open = cordova.InAppBrowser.open;
-    universalLinks.subscribe('sharePost', function (eventData) {
-      const shareParameters = eventData.path.split('/post')[1];
-      if (shareParameters) {
-        const linkToOpen = `/post${shareParameters}`;
-        VueRouter.push({path: linkToOpen});
-      }
-    });
-  }
 });
